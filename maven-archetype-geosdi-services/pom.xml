@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>org.geosdi.archetypes</groupId>
+    <artifactId>archetype-geosdi-services</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    
+    <packaging>maven-archetype</packaging>
+
+    <name>Archetype for geosdi-services</name>
+    
+    <distributionManagement>
+        <!--.................................. -->
+        <!-- geoSDI Repository -->
+        <!--.................................. -->
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>geosdi</id>
+            <url>ftp://repo.geosdi.org/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>2.6</version>
+            </extension>
+        
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>2.2</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        
+        <plugins>
+            
+            <!--            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <id>deploy-archetype-catalog</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy-file</goal>
+                        </goals>
+                        <configuration>
+                            <repositoryId>${project.distributionManagement.repository.id}</repositoryId>
+                            <url>${project.distributionManagement.repository.url}/org/geosdi/archetypes</url>
+                            <file>${user.home}/.m2/archetype-catalog.xml</file>
+                            <pomFile>${project.basedir}/pom.xml</pomFile>
+                            <packaging>xml</packaging>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.groupId}</artifactId>
+                            <version>${project.version}</version>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
+            
+            <plugin>
+
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>1.0-beta-5</version>
+                <executions>
+                    <execution>
+                        <id>upload-archetype-metadata</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>upload-single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <fromFile>${user.home}/.m2/archetype-catalog.xml</fromFile>
+                    <url>${project.distributionManagement.repository.url}org/geosdi/archetypes</url>
+                    <serverId>${project.distributionManagement.repository.id}</serverId>
+                </configuration>
+            </plugin> 
+                       
+        </plugins>
+    </build>
+</project>

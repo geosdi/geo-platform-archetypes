@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor name="archetype-geosdi-gui">
+    
+    <requiredProperties>
+        <requiredProperty key="NewModuleEntryPoint" />
+    </requiredProperties>
+    
+    <fileSets>       
+        
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </fileSet>
+        
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        
+        <fileSet filtered="true" packaged="true" encoding="UTF-8" >
+            <directory>src/test/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </fileSet>        
+    </fileSets>
+    
+</archetype-descriptor>
